@@ -1,26 +1,26 @@
 * Z:\home\chesito\github\Out2\diferencial_RE1K_valorescomerciales.asc
-Q1 N005 N006 v- 0 2N3904
-Q2 N006 N006 v- 0 2N3904
-Q3 VE N005 N006 0 2N3904
-R1 VC N005 5.6K
+Q1 N003 N004 v- 0 2N3904
+Q2 N004 N004 v- 0 2N3904
+Q3 VE N003 N004 0 2N3904
+R1 VC N003 5.6K
 Q4 VC VB P001 0 2N3904
-Q5 N001 N003 P002 0 2N3904
+Q5 N001 N002 P002 0 2N3904
 R2 VB 0 400k
-R3 N003 0 400K
-C1 VB N002 100µ
-C2 N004 N003 100µ
+R3 N002 0 400K
+C1 VB vin 100µ
+C2 -vin N002 100µ
 R5 VC N001 1.1k
-V4 N002 0 SINE(0 1.2 10k)
-V5 N004 0 SINE(0 1.2 10k)
 C3 vo N001 100µ
 R6 vo 0 10k
 V6 VC 0 12
 V7 0 v- 12
 R4 P001 VE 1K
 R7 P002 VE 1K
+V1 vin 0 SINE(0 1.2 20k)
+V2 -vin 0 SINE(0 -1.2 20k)
 .model NPN NPN
 .model PNP PNP
 .lib C:\users\chesito\Mis Documentos\LTspiceXVII\lib\cmp\standard.bjt
-.tran 0 0.0005 0 0.01
+.tran 0 0.3 0 0.01
 .backanno
 .end
