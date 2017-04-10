@@ -1,0 +1,25 @@
+Circuit: * Z:\home\chesito\github\Out2\Draft1.asc
+
+WARNING: Node VO2 is floating.
+
+WARNING: Less than two connections to node VO2.  This node is used by C2.
+Direct Newton iteration for .op point succeeded.
+
+Date: Mon Apr 10 17:41:16 2017
+Total elapsed time: 4.417 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 110031
+traniter = 110025
+tranpoints = 50011
+accept = 30015
+rejected = 19996
+matrix size = 44
+fillins = 24
+solver = Normal
+Matrix Compiler1: 4.35 KB object code size  4.5/3.8/[2.1]
+Matrix Compiler2: off  [2.7]/4.1/4.9
+
+
