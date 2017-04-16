@@ -1,0 +1,191 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{multirow, array} 
+\usepackage{float} 
+\usepackage[opciones]{SIunits}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{varioref}
+\usepackage{fancyref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage[nocompress]{cite}
+\usepackage{cite}
+\usepackage{subfigure} 
+\usetikzlibrary{positioning,fit,calc}
+\pgfplotsset{compat=1.10}
+
+
+\begin {document}
+  \title{Sistema de audio Out2 \\(Informe de Avances)}
+\author{Karen~Osako,~\IEEEmembership{kaosako@unal.edu.co,}
+        y~Fabio~Segura,~\IEEEmembership{fsegurac@unal.edu.co}
+\\Universidad Nacional de Colombia\\ Electrónica análoga II }
+\markboth{Informe de avances - sistema de audio Out2, 12~de~Abril ~2017}
+{Shell \MakeLowercase{\textit{et al.}}: Informe}
+
+\maketitle
+\IEEEpeerreviewmaketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introducción}
+
+En este documento se registrará los avances obtenido en la realización del proyecto, hasta la fecha presente.\\
+Lo primero que se realizó para la construcción del sistema, fue realizar la caracterización de los equipamientos que entregarán la señal al sistema Out2. Luego fueron diseñada y simulado la primera etapa del sistema (preamplificador) según estas características.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objetivo}
+
+Registrar los avances y pruebas realizadas para la realización del sistema Out2.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Caracterizaciones}
+En la tabla a seguir, están registradas las características de los dispositivos que entregarán la señal que utilizará el sistema Out2.
+\begin{table}[H]
+\caption{Caracterización dispositivos de audio}
+\begin{center}
+\begin{tabular}{@{}cl@{}}
+\toprule
+Dispositivo & Impedancia de salida dispositivo 
+\\ \midrule
+\\ Celular marca 1 & 56.8 $\Omega$
+\\ Celular marca 2 & 53.7$\Omega$
+\\ Computadora & 13.2 $\Omega$
+\\ Tableta &  50 $\Omega$
+\\
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t:cro}
+\small Tabla \ref{t:cro}: Caracterización de los dispositivos de audio, la amplitud de la señal de salida de estos aparatos varían entre 100mV a 1V.
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diseños}
+\subsection{Pre amplificación}
+Para el pre amplificador se diseñó un par diferencial \cref{preamp_dif}. Que generaba una disminución del ruido de la señal de entrada entregada por los dispositivos de audio.\\
+Para construir el amplificador diferencial, fue diseñada una fuente de corriente Wilson \cref{preamp_wil} para entregar una corriente constante al amplificador diferencial.\\
+
+\begin{figure}[H]
+  \centering
+ \fcolorbox{black}{black}{\includegraphics[scale=0.4]{diferencial.png}} \\
+  \caption{Fuente de corriente Wilson.}\label{preamp_wil}
+\end{figure}
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.4]{diferencial.png}}\\
+  \caption{Amplificador diferencial.}\label{preamp_dif}
+\end{figure}
+
+\subsection{Filtrado}
+Para la etapa de filtrado se inició el diseño del filtro \cref{filtro}.\\
+
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.6]{filtro.png}}\\
+  \caption{Filtro.}\label{filtro}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulaciones}
+En esa sección, se expondrá los resultados obtenidos a través de la simulación utilizando LtSpice.
+\subsection{Pre amplificación}
+Los resultados obtenidos de la etapa de pre amplificación, se muestran en \cref{pamp_sim} y \cref{pamp_sim_db}
+
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.4]{diferencial_sim.png}}\\
+  \caption{Resultado simulación pre-amplificador.}\label{pamp_sim}
+\end{figure}
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.47]{diferencial_sim_db.png}}\\
+  \caption{Respuesta en frecuencia pre-amplificador.}\label{pamp_sim_db}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Prática}
+En esta sección de mostrará los resultados obtenidos a través del montaje del circuito y mediciones.
+\subsection{Pre amplificación}
+La primera prueba que se realizó fue para averiguar la capacidad de la puente de wilson, la cual, se varió la resistencia de salida, hasta aproximadamente 20K$\Omega$ sin que variara la intensidad de la corriente en la salida de la fuente.\\
+En seguida se realizarán las pruebas del par diferencial.
+En la tabla \ref{t:dif_pol} se muestran los resultados de las mediciones realizadas para la polarización del par diferencial.
+\begin{table}[H]
+\caption{Polarización}
+\begin{center}
+\begin{tabular}{@{}cl@{}}
+\toprule
+Intensidades medidas & Resultados
+\\ \midrule
+\\ \emph{Iref}&3.95 mA
+\\ \emph{Iout(Rama)}&1.71 mA
+\\ \emph{IRc}&1.72 mA
+\\ \emph{Vbe1}&0,723 V
+\\ \emph{Vbe2}&0,724 V
+\\ \emph{Vce1}&16.23 V
+\\ \emph{Vce2}&14.35 V
+\\
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t:dif_pol}
+\small Tabla \ref{t:dif_pol}: En la tabla se muestran los valores de polarización del par diferencial.
+\end{table}
+En la tabla \ref{t:dif_sig} se muestran los resultados de las mediciones de señal de entrada y salida del par diferencial.
+\begin{table}[H]
+\caption{Análisis de pequeña señal}
+\begin{center}
+\begin{tabular}{@{}cl@{}}
+\toprule
+Entrada & Salida
+\\ \midrule
+\\ 0.058 Vpp&0.046 Vpp
+\\ 0.1 Vpp&0.090 Vpp
+\\ 0.496 Vpp&0.476 Vpp
+\\ 1 Vpp&0.952 Vpp
+\\ 1.5 Vpp&1.42 Vpp
+\\
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t:dif_sig}
+\small Tabla \ref{t:dif_sig}: En la tabla se muestran los valores resultante de la medición de pequeña señal.
+\end{table}
+En la tabla \ref{t:dif_fre} se muestran los resultados del análisis variando la frecuencia con una señal de248 mVpp.
+
+\begin{table}[H]
+\caption{Análisis de cambios de frecuencia}
+\begin{center}
+\begin{tabular}{@{}cl@{}}
+\toprule
+Frecuencia & Salida
+\\ \midrule
+\\ 10 Hz&126m Vpp
+\\ 20 Hz&138m Vpp
+\\ 50 Hz&140m Vpp
+\\ 100 Hz&264m Vpp
+\\ 1K Hz&256m Vpp
+\\
+\bottomrule
+\end{tabular}
+\end{center}
+\label{t:dif_fre}
+\small Tabla \ref{t:dif_fre}: En la tabla se muestran los valores resultante de la medición de la señal de salida, variando la frecuencia de entrada, para una entrada de 248 mVpp.
+\end{table}
+
+En la práctica, se sustituyo la de base por 390K para utilizar valores comerciales y la resistencia de colector por 1.317K par ajustar la ganancia debido al cambio de la resistencia de base.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{thebibliography}{1}
+%\bibitem{amp}  M. Pereira, \emph{"Amplificadores de audio"}. Bilbao, España: Escuela superior de Ingenieros, 2006.
+
+%\end{thebibliography}
+\end {document}
