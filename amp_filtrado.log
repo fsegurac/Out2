@@ -2,21 +2,21 @@ Circuit: * Z:\home\chesito\github\Out2\amp_filtrado.asc
 
 Direct Newton iteration for .op point succeeded.
 
-Date: Sun Apr 16 23:36:24 2017
-Total elapsed time: 15.610 seconds.
+Date: Sun Apr 16 23:55:59 2017
+Total elapsed time: 8.741 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 404435
-traniter = 404429
-tranpoints = 174625
-accept = 117907
-rejected = 56718
-matrix size = 44
-fillins = 24
+totiter = 216461
+traniter = 216455
+tranpoints = 100009
+accept = 60014
+rejected = 39995
+matrix size = 47
+fillins = 22
 solver = Normal
-Matrix Compiler1: 4.35 KB object code size  3.7/3.0/[1.7]
-Matrix Compiler2: off  [2.4]/3.2/4.0
+Matrix Compiler1: 4.55 KB object code size  4.7/8.8/[2.2]
+Matrix Compiler2: off  [2.9]/4.0/4.3
 
 
