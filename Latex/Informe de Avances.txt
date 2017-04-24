@@ -163,15 +163,23 @@ En la tabla \ref{t:dif_fre} se muestran los resultados del análisis variando la 
 \begin{table}[H]
 \caption{Análisis de cambios de frecuencia}
 \begin{center}
-\begin{tabular}{@{}cl@{}}
+\begin{tabular}{@{}cll@{}}
 \toprule
-Frecuencia & Salida
+Frecuencia (Hz) & Entrada (Vpp) & Salida (Vpp)
 \\ \midrule
-\\ 10 Hz&126m Vpp
-\\ 20 Hz&138m Vpp
-\\ 50 Hz&140m Vpp
-\\ 100 Hz&264m Vpp
-\\ 1K Hz&256m Vpp
+\\10&864m&1.16
+\\20&992m&1.16
+\\50&1.05&1.16
+\\100&1.06&1.16
+\\500&1.06&1.16
+\\1K&1.06&1.16
+\\5K&1.06&1.17
+\\10K&1.06&1.17
+\\15K&1.06&1.17
+\\20K&1.06&1.17
+\\25K&1.06&1.17
+\\50K&1.06&1.17
+\\100K&1.06&1.17
 \\
 \bottomrule
 \end{tabular}
