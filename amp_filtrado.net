@@ -1,0 +1,39 @@
+* Z:\home\chesito\github\Out2\amp_filtrado.asc
+Q1 N008 N009 v- 0 2N3904
+Q2 N009 N009 v- 0 2N3904
+Q3 N005 N008 N009 0 2N3904
+R1 VC N008 5.6K
+Q4 VC N001 N003 0 2N3904
+R2 N003 N005 1k
+R3 N001 0 390k
+C2 vo2 N003 0.69µ
+Q5 N006 N007 v- 0 2N3904
+Q6 N007 N007 v- 0 2N3904
+Q7 VE N006 N007 0 2N3904
+R4 VC N006 5.6K
+Q8 VC vin P001 0 2N3904
+Q9 vin1 -vin P002 0 2N3904
+R5 vin 0 390k
+R6 -vin 0 390K
+R7 VC vin1 1.1k
+V4 VC 0 12
+V5 0 v- 12
+R9 P001 VE 1K
+R10 P002 VE 1K
+V6 vin 0 SINE(0 1.2 3000) AC 1.2
+V7 -vin 0 SINE(0 -1.2 3000) AC -1.2
+R8 vo2 0 1k
+C1 N001 vin1 10µ
+Q10 VC N002 N004 0 2N3904
+R11 N004 N005 1k
+R12 N002 0 390k
+C3 vo3 N004 100µ
+R13 vo3 0 1k
+C4 N002 vin1 100µ
+C5 vo3 0 47µ
+.model NPN NPN
+.model PNP PNP
+.lib C:\users\chesito\Mis Documentos\LTspiceXVII\lib\cmp\standard.bjt
+.ac dec 10 1 40k
+.backanno
+.end
