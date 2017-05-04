@@ -38,8 +38,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 
-En este documento se registrará los avances obtenido en la realización del proyecto, hasta la fecha presente.\\
-Lo primero que se realizó para la construcción del sistema, fue realizar la caracterización de los equipamientos que entregarán la señal al sistema Out2. Luego fueron diseñada y simulado la primera etapa del sistema (preamplificador) según estas características.\\
+En este documento se registrará los avances obtenido en la realización del proyecto, hasta la presente fecha.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Objetivo}
@@ -48,7 +47,7 @@ Registrar los avances y pruebas realizadas para la realización del sistema Out2.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Caracterizaciones}
-En la tabla a seguir, están registradas las características de los dispositivos que entregarán la señal que utilizará el sistema Out2.
+En la siguiente tabla, están registradas las características de los dispositivos que entregarán la señal que utilizará el sistema Out2. Además, se encontró que hay dispositivos que presentan una amplitud de salida máxima entre 1.1V y 1.2V, por lo cual se usará esta amplitud para realizar simulaciones y pruebas a lo largo del proyecto.
 \begin{table}[H]
 \caption{Caracterización dispositivos de audio}
 \begin{center}
@@ -65,14 +64,13 @@ Dispositivo & Impedancia de salida dispositivo
 \end{tabular}
 \end{center}
 \label{t:cro}
-\small Tabla \ref{t:cro}: Caracterización de los dispositivos de audio, la amplitud de la señal de salida de estos aparatos varían entre 100mV a 1V.
+\small Tabla \ref{t:cro}:Caracterización de los dispositivos de audio, la amplitud de la señal de salida de estos aparatos varían entre 100 mV a 1V.
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diseños}
 \subsection{Pre amplificación}
-Para el pre amplificador se diseñó un par diferencial \cref{preamp_dif}. Que generaba una disminución del ruido de la señal de entrada entregada por los dispositivos de audio.\\
-Para construir el amplificador diferencial, fue diseñada una fuente de corriente Wilson \cref{preamp_wil} para entregar una corriente constante al amplificador diferencial.\\
+Para el preamplificador se diseñó un par diferencial (\cref{preamp_dif}), polarizado con una fuente de corriente Wilson (\cref{preamp_wil}), la cual entrega una corriente de 4mA, y |Vcc| = 12V. El cual, es usado para disminuir el ruido en la señal de salida.
 
 \begin{figure}[H]
   \centering
@@ -86,19 +84,25 @@ Para construir el amplificador diferencial, fue diseñada una fuente de corriente
 \end{figure}
 
 \subsection{Filtrado}
-Para la etapa de filtrado se inició el diseño del filtro \cref{filtro}.\\
+Para la etapa de filtrado se requieren diseñar dos filtros: Uno que entregará la salida del woofer (20 - 300Hz), y otro que entregará la señal de salida al tweeter (>300Hz). Ambos, son polarizados igual que el par diferencial, con una fuente wilson.
 
 \begin{figure}[H]
   \centering
-   \fcolorbox{black}{black}{\includegraphics[scale=0.6]{filtro.png}}\\
-  \caption{Filtro.}\label{filtro}
+   \fcolorbox{black}{black}{\includegraphics[scale=0.6]{no_pasa_baja.png}}\\
+  \caption{Filtro tweeter.}\label{filtro}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.55]{pasa_baja.png}}\\
+  \caption{Filtro woofer.}\label{filtro}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulaciones}
-En esa sección, se expondrá los resultados obtenidos a través de la simulación utilizando LtSpice.
+En esta sección, se expondrá los resultados obtenidos a través de la simulación utilizando LtSpice.
 \subsection{Pre amplificación}
-Los resultados obtenidos de la etapa de pre amplificación, se muestran en \cref{pamp_sim} y \cref{pamp_sim_db}
+Los resultados obtenidos de la etapa de pre amplificación, se muestran en \cref{pamp_sim} y \cref{pamp_sim_db}.
 
 \begin{figure}[H]
   \centering
@@ -110,12 +114,19 @@ Los resultados obtenidos de la etapa de pre amplificación, se muestran en \cref{
    \fcolorbox{black}{black}{\includegraphics[scale=0.47]{diferencial_sim_db.png}}\\
   \caption{Respuesta en frecuencia pre-amplificador.}\label{pamp_sim_db}
 \end{figure}
+\subsection{Filtrado}
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.65]{res_fr_filtros.png}}\\
+  \caption{Respuesta en frecuencia filtro woofer (color verde) y filtro twitter (color rojo).}\label{r_f_filtros}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prática}
-En esta sección de mostrará los resultados obtenidos a través del montaje del circuito y mediciones.
+En esta sección se mostrará los resultados obtenidos a través del montaje del circuito y mediciones.
 \subsection{Pre amplificación}
-La primera prueba que se realizó fue para averiguar la capacidad de la puente de wilson, la cual, se varió la resistencia de salida, hasta aproximadamente 20K$\Omega$ sin que variara la intensidad de la corriente en la salida de la fuente.\\
-En seguida se realizarán las pruebas del par diferencial.
+En el laboratorio se realizaron pruebas para verificar la polarización del circuito, y ver el comportamiento del mismo ante el cambio de tensión y frecuencia (ancho de banda de interés 20 - 20000Hz). Además, ver el filtrado que realiza el mismo a la señal de entrada (función principal del mismo). 
+
 En la tabla \ref{t:dif_pol} se muestran los resultados de las mediciones realizadas para la polarización del par diferencial.
 \begin{table}[H]
 \caption{Polarización}
@@ -138,7 +149,7 @@ Intensidades medidas & Resultados
 \label{t:dif_pol}
 \small Tabla \ref{t:dif_pol}: En la tabla se muestran los valores de polarización del par diferencial.
 \end{table}
-En la tabla \ref{t:dif_sig} se muestran los resultados de las mediciones de señal de entrada y salida del par diferencial.
+En la tabla \ref{t:dif_sig} se muestran los resultados de las mediciones de señal de entrada y salida del par diferencial, y en la \cref{inout_dif} se muestra la señal de entrada y salida del circuito, en la cual se puede observar el filtrado que le realiza a la señal de entrada.
 \begin{table}[H]
 \caption{Análisis de pequeña señal}
 \begin{center}
@@ -158,7 +169,14 @@ Entrada & Salida
 \label{t:dif_sig}
 \small Tabla \ref{t:dif_sig}: En la tabla se muestran los valores resultante de la medición de pequeña señal.
 \end{table}
-En la tabla \ref{t:dif_fre} se muestran los resultados del análisis variando la frecuencia con una señal de248 mVpp.
+
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.55]{inout_dif.png}}\\
+  \caption{Comparación de entrada y salida del par diferencial.}\label{inout_dif}
+\end{figure}
+
+En la tabla \ref{t:dif_fre} se muestran los resultados del análisis variando la frecuencia con una señal de 1Vpp. En la figura 7 se muestra la gráfica resultante de dichos datos, la cual tiene un pico en las bajas frecuencias, esto debido al error que da el osciloscopio, pero en general se puede observar que a lo largo del barrido la ganancia se mantiene estable.
 
 \begin{table}[H]
 \caption{Análisis de cambios de frecuencia}
@@ -185,11 +203,17 @@ Frecuencia (Hz) & Entrada (Vpp) & Salida (Vpp)
 \end{tabular}
 \end{center}
 \label{t:dif_fre}
-\small Tabla \ref{t:dif_fre}: En la tabla se muestran los valores resultante de la medición de la señal de salida, variando la frecuencia de entrada, para una entrada de 248 mVpp.
+\small Tabla \ref{t:dif_fre}: En la tabla se muestran los valores resultante de la medición de la señal de salida, variando la frecuencia de entrada, para una entrada de 1 Vpp.
+
 \end{table}
+\begin{figure}[H]
+  \centering
+   \fcolorbox{black}{black}{\includegraphics[scale=0.55]{re_fre_dif.png}}\\
+  \caption{Respuesta en frecuencia par diferencial.}\label{inout_dif}
+\end{figure}
 
-En la práctica, se sustituyo la de base por 390K para utilizar valores comerciales y la resistencia de colector por 1.317K par ajustar la ganancia debido al cambio de la resistencia de base.
-
+\textbf{NOTA:}
+Si se quiere realizar una revisión de los archivos de simulación, estos pueden ser descargados de https://github.com/fsegurac/Out2.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{thebibliography}{1}
